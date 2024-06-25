@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic iFrame Source</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #videoIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="videoIframe" allowfullscreen></iframe>
+
+    <script>
+        // Define the path
+        let path = "/embed/?SFpxbWhiYnBsNWIrTTJHY2xudmdoL3RBVW5rQk9jQWFhaXJCVno3S3AwSFFPek03VEgxTWFQcXJickN4ZCtTZklJRHA2dkJ1R2phbUdiV2VWblM1WTBSU3FULzdKV2dqUzdGdzIyb2RkZGs9";
+
+        // Fetch the domain from config.json
+        fetch('https://raw.githubusercontent.com/spacetoonlinks/hosting/main/stardima-domain-config.json')
+            .then(response => response.json())
+            .then(config => {
+                let domain = config.domain;
+                document.getElementById("videoIframe").src = domain + path;
+            })
+            .catch(error => {
+                console.error('Error fetching configuration:', error);
+            });
+    </script>
+    </body>
+    </html>
